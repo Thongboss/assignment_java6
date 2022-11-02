@@ -15,7 +15,7 @@ public class OrderController {
 	public String list() {
 		return "order/list";
 	}
-	@GetMapping("detail")
+	@GetMapping("detail/{id}")
 	public String detail() {
 		return "order/detail";
 	}
