@@ -27,9 +27,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name="orders")
 public class Order implements Serializable{
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long orderId;
     @Temporal(TemporalType.DATE)
     private Date createDate;
     @Column(length=255)

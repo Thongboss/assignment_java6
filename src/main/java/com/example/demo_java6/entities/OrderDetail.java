@@ -1,7 +1,6 @@
 package com.example.demo_java6.entities;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +21,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name="order_details")
 public class OrderDetail implements Serializable{
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
@@ -30,9 +33,9 @@ public class OrderDetail implements Serializable{
     @Column(nullable = false)
     private Long quantity;
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="orderId")
     private Order order;
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="productId")
     private Product product;
 }

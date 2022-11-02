@@ -21,9 +21,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name="roles")
 public class Role implements Serializable{
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long roleId;
     @Column(columnDefinition = "nvarchar(100) not null")
     private String name;
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)

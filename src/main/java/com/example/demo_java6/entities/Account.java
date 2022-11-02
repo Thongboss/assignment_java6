@@ -7,7 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,7 +20,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name="accounts")
 public class Account implements Serializable{
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
     @Column(columnDefinition = "varchar(100) not null")
     private String userName;
     @Column(columnDefinition = "nvarchar(500) not null")

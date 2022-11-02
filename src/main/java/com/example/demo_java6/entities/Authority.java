@@ -1,7 +1,6 @@
 package com.example.demo_java6.entities;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,11 +20,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name="authorities")
 public class Authority implements Serializable{
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="roleId")
     private Role role;
     @ManyToOne
     @JoinColumn(name="userName")

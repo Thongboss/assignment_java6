@@ -22,9 +22,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name = "categories")
 public class Category implements Serializable{
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long categoryId;
     @Column(name = "name", length = 100, columnDefinition = "nvarchar(100) not null")
     private String name;
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)

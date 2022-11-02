@@ -27,9 +27,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name="products")
 public class Product implements Serializable{
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long productId;
     @Column(columnDefinition = "nvarchar(100) not null")
     private String name;
     @Column(columnDefinition = "nvarchar(500) not null")
@@ -42,7 +46,7 @@ public class Product implements Serializable{
     @Column(columnDefinition = "nvarchar(100) not null")
     private String available;
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="categoryId")
     private Category category;
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<OrderDetail> orderDetails;
