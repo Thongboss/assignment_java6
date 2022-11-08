@@ -1,0 +1,12 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <h1>ADD CATEGORY</h1>
+    <form th:action="@{/admin/category/add}">
+        <div class="form-group">
+            <label for="">name category</label>
+            <input type="text" class="form-control" name="name" id="" aria-describedby="helpId" placeholder="category name">
+            <small id="helpId" class="form-text text-muted">Help text</small>
+        </div>
+        <button class="btn btn-reset">Reset</button>
+        <a class="btn btn-outline-success">Add</a>
+    </form>
+</div>
