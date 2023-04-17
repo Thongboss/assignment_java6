@@ -2,7 +2,7 @@
     <div class="panel panel-primary">
         <div class="panel-body text-center">
             <i class="glyphicon glyphicon-shopping-cart" style="font-size: 25px; color:orange;"></i>
-            <a th:href="@{/cart/view}">15 item x $25.7</a>
+            <a th:href="@{/cart/view}">{{cart.count}} item x ${{cart.amount | number : 2}}</a>
         </div>
     </div>
 </div>

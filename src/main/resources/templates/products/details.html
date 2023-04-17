@@ -11,7 +11,7 @@
         <span style="font-size: 15px; color: chocolate;">Đơn giá: </span><b>[[${item.price}]]</b>
         <div style="margin-top: 2px;">
             <p th:if="${status}" style="color: crimson;">Sản phẩm ngừng kinh doanh</p>
-            <button th:unless="${status}" class="btn btn-success">
+            <button th:unless="${status}" class="btn btn-success" th:attr="ng-click=@{|cart.add(${item.productId}|)}">
                 <i class="glyphicon glyphicon-shopping-cart"></i>
             </button>
         </div>

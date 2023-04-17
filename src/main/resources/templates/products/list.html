@@ -18,7 +18,7 @@
                 <div class="panel-footer text-right">
                     <b class="pull-left">$[[${pro.price}]]</b>
                     <b class="pull-center" style="color: coral;">[[${pro.available}]]</b>
-                    <button class="btn btn-success">
+                    <button class="btn btn-success" th:attr="ng-click=@{|cart.add(${pro.productId})|}">
                         <i class="glyphicon glyphicon-shopping-cart"></i>
                     </button>
                 </div>

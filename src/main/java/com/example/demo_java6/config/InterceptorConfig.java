@@ -16,6 +16,6 @@ public class InterceptorConfig implements WebMvcConfigurer{
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(gobal)
 		.addPathPatterns("/products/**","/cart/**")
-		.excludePathPatterns("/images/**","/rest/**","/admin/**");
+		.excludePathPatterns("/images/**","/admin/**");
 	}
 }

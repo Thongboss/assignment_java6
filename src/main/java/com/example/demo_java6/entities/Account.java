@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,8 +37,10 @@ public class Account implements Serializable{
     private String fullName;
     @Column(length=600)
     private String photo;
+    @JsonIgnore
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private List<Authority> authorities;
+    @JsonIgnore
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private List<Order> orders;
 }

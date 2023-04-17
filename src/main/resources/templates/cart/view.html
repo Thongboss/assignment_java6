@@ -2,7 +2,46 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
 <body>
     <main>
-        <h1>CART VIEW</h1>
+        <div class="panel panel-success">
+            <div class="panel-heading" style="font-size: 40px;">Shopping Cart</div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in cart.carts">
+                        <td>{{$index + 1}}</td>
+                        <td>{{item.name}}</td>
+                        <td>${{item.price | number : 2}}</td>
+                        <td><input type="number" ng-change="cart.saveToLocalStorage()" ng-model="item.qty" min="1" style="width: 45px; height: 20px;"></td>
+                        <td>${{item.qty * item.price | number : 2}}</td>
+                        <td>
+                            <button ng-click="cart.remove(item.productId)" class="btn btn-sm btn-danger">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="panel-footer">
+                <b class="text-left">Total Money: </b><span style="color: darkgoldenrod;">{{cart.amount}}</span>
+                <span style="color: darkgoldenrod;margin-right: 500px;font-weight: bold;">$</span>
+                <button ng-click="cart.clear()" class="btn btn-danger">
+                    <i class="glyphicon glyphicon-trash"></i>Clear
+                </button>
+                <a th:href="@{/order/checkout}" class="btn btn-primary" style="margin-left: 3px;">
+                    <i class="glyphicon glyphicon-hand-right"></i>Check Out
+                </a>
+
+            </div>
+        </div>
     </main>
 </body>
 </html>

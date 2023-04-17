@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,11 +45,11 @@ public class Product implements Serializable{
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date createDate;
-    @Column(columnDefinition = "nvarchar(100) not null")
     private Long available;
     @ManyToOne
     @JoinColumn(name="categoryId")
     private Category category;
+    @JsonIgnore
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<OrderDetail> orderDetails;
 }
