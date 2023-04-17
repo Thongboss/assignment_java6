@@ -5,7 +5,7 @@
         </div>
         <div class="list-group">
             <div th:each=" cate : ${categories}">
-                <a href="/products/list?cid=1" class="list-group-item" th:text="${cate.name}"></a>
+                <a th:href="@{|/products/list/${cate.categoryId}|}" class="list-group-item" th:text="${cate.name}"></a>
             </div>
         </div>
     </div>

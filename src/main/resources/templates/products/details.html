@@ -2,7 +2,26 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
 <body>
     <main>
-        <h1>PRODUCT DETAIL</h1>
+        CHI TIẾT SẢN PHẨM
+        <h1>[[${item.name}]]</h1>
+        <b style="font-size: 25px;">lOẠI: </b><span style="font-size: 25px;">[[${item.category.name}]]</span><br>
+        <img th:src="@{|/images/${item.image}|}" alt="">
+        <br>
+        <span style="font-size: 15px; color: chocolate;">Số lượng: </span><b>[[${item.available}]]</b><br>
+        <span style="font-size: 15px; color: chocolate;">Đơn giá: </span><b>[[${item.price}]]</b>
+        <div style="margin-top: 2px;">
+            <p th:if="${status}" style="color: crimson;">Sản phẩm ngừng kinh doanh</p>
+            <button th:unless="${status}" class="btn btn-success">
+                <i class="glyphicon glyphicon-shopping-cart"></i>
+            </button>
+        </div>
+        <hr>
+        SẢN PHẨM CÙNG LOẠI
+        <ul>
+            <li th:each=" cate : ${item.category.products}">
+                <a th:href="@{|/products/detail/${cate.productId}|}">[[${cate.name}]]</a>
+            </li>
+        </ul>
     </main>
 </body>
 </html>

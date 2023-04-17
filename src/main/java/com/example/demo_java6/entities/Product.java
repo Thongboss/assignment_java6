@@ -44,7 +44,7 @@ public class Product implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date createDate;
     @Column(columnDefinition = "nvarchar(100) not null")
-    private String available;
+    private Long available;
     @ManyToOne
     @JoinColumn(name="categoryId")
     private Category category;
