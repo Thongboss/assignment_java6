@@ -6,13 +6,18 @@
       </div> -->
       <ul class="nav navbar-nav">
         <li class="active"><a th:href="@{/products/list}">Home</a></li>
-        <li><a href="#">Sign in</a></li>
-        <li><a href="#">Sign out</a></li>
-        <li><a href="#">Your orders</a></li>
-        <li><a href="#">Administration</a></li>
+        <th:block th:if="${#request.remoteUser}">
+          <li><a th:href="@{/security/logoff}">Sign out</a></li>
+          <li><a th:href="@{/order/list}">Your orders</a></li>
+          <li th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">
+            <a th:href="@{/admin/home/index}">Administration</a></li>
+        </th:block>
+        <th:block th:unless="${#request.remoteUser}">
+          <li><a th:href="@{/security/login/form}">Sign in</a></li>
+        </th:block>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Welcom you</a></li>
+      <ul th:if="${#request.remoteUser}" class="nav navbar-nav navbar-right">
+        <li><a href="#">Welcom [[${#request.remoteUser}]]</a></li>
       </ul>
     </div>
   </nav>

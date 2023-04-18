@@ -3,6 +3,7 @@ package com.example.demo_java6.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +16,7 @@ import com.example.demo_java6.service.AccountService;
 
 @Service
 public class AccountServiceImpl implements AccountService{
+	@Autowired
     AccountRepository accountRepository;
 
     @Override
@@ -76,6 +78,17 @@ public class AccountServiceImpl implements AccountService{
     public void deleteAll() {
         accountRepository.deleteAll();
     }
+
+	@Override
+	public Account findByEmail(String email) {
+		// TODO Auto-generated method stub
+		return accountRepository.findByEmail(email);
+	}
+
+//	@Override
+//	public void updatePassword(String pass, String email) {
+//		accountRepository.updatePassword(pass, email);
+//	}
     
     
 }

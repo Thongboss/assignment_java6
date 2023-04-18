@@ -40,6 +40,7 @@ public class Order implements Serializable{
     private Date createDate;
     @Column(length=255)
     private String address;
+    private String status;
     @ManyToOne
     @JoinColumn(name="userName")
     private Account account;

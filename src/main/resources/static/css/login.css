@@ -1,0 +1,19 @@
+
+/* .container{
+  width: 400px;
+  margin-top: 50px;
+} */
+
+.form-control{
+  border-color: aquamarine;
+  /* margin-left: 10px; */
+  /* width: 75%; */
+}
+.form-control:focus{
+  border-color: chartreuse;
+}
+.form-group{
+  width: 300px;
+}
+
+

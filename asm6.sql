@@ -2,9 +2,9 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 17, 2023 lúc 09:28 AM
--- Phiên bản máy phục vụ: 8.0.31
+-- Máy chủ: 127.0.0.1:3307
+-- Thời gian đã tạo: Th4 17, 2023 lúc 03:55 PM
+-- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -29,11 +29,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `accounts` (
   `user_name` varchar(100) NOT NULL,
-  `email` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `full_name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `password` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `full_name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `password` varchar(500) CHARACTER SET utf8 NOT NULL,
   `photo` varchar(600) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `accounts`
@@ -142,10 +142,10 @@ INSERT INTO `accounts` (`user_name`, `email`, `full_name`, `password`, `photo`) 
 --
 
 CREATE TABLE `authorities` (
-  `id` bigint NOT NULL,
+  `id` bigint(20) NOT NULL,
   `user_name` varchar(100) NOT NULL,
-  `role_id` bigint DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `role_id` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `authorities`
@@ -256,9 +256,9 @@ INSERT INTO `authorities` (`id`, `user_name`, `role_id`) VALUES
 --
 
 CREATE TABLE `categories` (
-  `category_id` bigint NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `category_id` bigint(20) NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `categories`
@@ -285,91 +285,92 @@ INSERT INTO `categories` (`category_id`, `name`) VALUES
 --
 
 CREATE TABLE `orders` (
-  `order_id` bigint NOT NULL,
+  `order_id` bigint(20) NOT NULL,
   `address` varchar(255) DEFAULT NULL,
+  `status` varchar(50) NOT NULL,
   `create_date` date DEFAULT NULL,
   `user_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `address`, `create_date`, `user_name`) VALUES
-(10249, 'Luisenstr. 48', NULL, 'TOMSP'),
-(10250, 'Rua do Paço, 67', NULL, 'HANAR'),
-(10251, '2, rue du Commerce', NULL, 'VICTE'),
-(10252, 'Boulevard Tirou, 255', NULL, 'SUPRD'),
-(10253, 'Rua do Paço, 67', NULL, 'HANAR'),
-(10254, 'Hauptstr. 31', NULL, 'CHOPS'),
-(10255, 'Starenweg 5', NULL, 'RICSU'),
-(10256, 'Rua do Mercado, 12', NULL, 'WELLI'),
-(10257, 'Carrera 22 con Ave. Carlos Soublette #8-35', NULL, 'HILAA'),
-(10258, 'Kirchgasse 6', NULL, 'ERNSH'),
-(10259, 'Sierras de Granada 9993', NULL, 'CENTC'),
-(10260, 'Mehrheimerstr. 369', NULL, 'OTTIK'),
-(10261, 'Rua da Panificadora, 12', NULL, 'QUEDE'),
-(10262, '2817 Milton Dr.', NULL, 'RATTC'),
-(10263, 'Kirchgasse 6', NULL, 'ERNSH'),
-(10264, 'Åkergatan 24', NULL, 'FOLKO'),
-(10265, '24, place Kléber', NULL, 'BLONP'),
-(10266, 'Torikatu 38', NULL, 'WARTH'),
-(10267, 'Berliner Platz 43', NULL, 'FRANK'),
-(10268, '5ª Ave. Los Palos Grandes', NULL, 'GROSR'),
-(10269, '1029 - 12th Ave. S.', NULL, 'WHITC'),
-(10270, 'Torikatu 38', NULL, 'WARTH'),
-(10271, 'P.O. Box 555', NULL, 'SPLIR'),
-(10272, '2817 Milton Dr.', NULL, 'RATTC'),
-(10273, 'Taucherstraße 10', NULL, 'QUICK'),
-(10274, '59 rue de l\'Abbaye', NULL, 'VINET'),
-(10275, 'Via Ludovico il Moro 22', NULL, 'MAGAA'),
-(10276, 'Avda. Azteca 123', NULL, 'TORTU'),
-(10277, 'Heerstr. 22', NULL, 'MORGK'),
-(10278, 'Berguvsvägen  8', NULL, 'BERGS'),
-(10279, 'Magazinweg 7', NULL, 'LEHMS'),
-(10280, 'Berguvsvägen  8', NULL, 'BERGS'),
-(10281, 'Gran Vía, 1', NULL, 'ROMEY'),
-(10282, 'Gran Vía, 1', NULL, 'ROMEY'),
-(10283, 'Carrera 52 con Ave. Bolívar #65-98 Llano Largo', NULL, 'LILAS'),
-(10284, 'Magazinweg 7', NULL, 'LEHMS'),
-(10285, 'Taucherstraße 10', NULL, 'QUICK'),
-(10286, 'Taucherstraße 10', NULL, 'QUICK'),
-(10287, 'Av. Copacabana, 267', NULL, 'RICAR'),
-(10288, 'Strada Provinciale 124', NULL, 'REGGC'),
-(10289, 'Fauntleroy Circus', NULL, 'BSBEV'),
-(10290, 'Av. dos Lusíadas, 23', NULL, 'COMMI'),
-(10291, 'Rua da Panificadora, 12', NULL, 'QUEDE'),
-(10292, 'Av. Inês de Castro, 414', NULL, 'TRADH'),
-(10293, 'Avda. Azteca 123', NULL, 'TORTU'),
-(10294, '2817 Milton Dr.', NULL, 'RATTC'),
-(10295, '59 rue de l\'Abbaye', NULL, 'VINET'),
-(10296, 'Carrera 52 con Ave. Bolívar #65-98 Llano Largo', NULL, 'LILAS'),
-(10297, '24, place Kléber', NULL, 'BLONP'),
-(10298, '8 Johnstown Road', NULL, 'HUNGO'),
-(10299, 'Av. Copacabana, 267', NULL, 'RICAR'),
-(10300, 'Via Ludovico il Moro 22', NULL, 'MAGAA'),
-(10301, 'Adenauerallee 900', NULL, 'WANDK'),
-(10302, 'Boulevard Tirou, 255', NULL, 'SUPRD'),
-(10303, 'C/ Romero, 33', NULL, 'GODOS'),
-(10304, 'Avda. Azteca 123', NULL, 'TORTU'),
-(10305, '2743 Bering St.', NULL, 'OLDWO'),
-(10306, 'Gran Vía, 1', NULL, 'ROMEY'),
-(10307, '89 Chiaroscuro Rd.', NULL, 'LONEP'),
-(10308, 'Avda. de la Constitución 2222', NULL, 'ANATR'),
-(10309, '8 Johnstown Road', NULL, 'HUNGO'),
-(10310, '89 Jefferson Way Suite 2', NULL, 'THEBI'),
-(10311, '67, rue des Cinquante Otages', NULL, 'DUMON'),
-(10312, 'Adenauerallee 900', NULL, 'WANDK'),
-(10313, 'Taucherstraße 10', NULL, 'QUICK'),
-(10314, '2817 Milton Dr.', NULL, 'RATTC'),
-(10315, 'Garden House Crowther Way', NULL, 'ISLAT'),
-(10316, '2817 Milton Dr.', NULL, 'RATTC'),
-(10317, '89 Chiaroscuro Rd.', NULL, 'LONEP'),
-(10318, 'Garden House Crowther Way', NULL, 'ISLAT'),
-(10319, 'Avda. Azteca 123', NULL, 'TORTU'),
-(10320, 'Torikatu 38', NULL, 'WARTH'),
-(10321, 'Garden House Crowther Way', NULL, 'ISLAT'),
-(10322, 'Calle Dr. Jorge Cash 321', NULL, 'PERIC');
+INSERT INTO `orders` (`order_id`, `address`, `status`, `create_date`, `user_name`) VALUES
+(10249, 'Luisenstr. 48', 'Đã nhận được hàng', NULL, 'TOMSP'),
+(10250, 'Rua do Paço, 67', 'Đã nhận được hàng', NULL, 'HANAR'),
+(10251, '2, rue du Commerce', 'Chờ xác nhận', NULL, 'VICTE'),
+(10252, 'Boulevard Tirou, 255', 'Đã nhận được hàng', NULL, 'SUPRD'),
+(10253, 'Rua do Paço, 67', 'Đã nhận được hàng', NULL, 'HANAR'),
+(10254, 'Hauptstr. 31', 'Chờ xác nhận', NULL, 'CHOPS'),
+(10255, 'Starenweg 5', 'Đã nhận được hàng', NULL, 'RICSU'),
+(10256, 'Rua do Mercado, 12', 'Chờ xác nhận', NULL, 'WELLI'),
+(10257, 'Carrera 22 con Ave. Carlos Soublette', 'Đã nhận được hàng', NULL, 'HILAA'),
+(10258, 'Kirchgasse 6', 'Chờ xác nhận', NULL, 'ERNSH'),
+(10259, 'Sierras de Granada 9993', 'Đã nhận được hàng', NULL, 'CENTC'),
+(10260, 'Mehrheimerstr. 369', 'Chờ xác nhận', NULL, 'OTTIK'),
+(10261, 'Rua da Panificadora, 12', 'Đã nhận được hàng', NULL, 'QUEDE'),
+(10262, '2817 Milton Dr.', 'Đã nhận được hàng', NULL, 'RATTC'),
+(10263, 'Kirchgasse 6', 'Đang giao', NULL, 'ERNSH'),
+(10264, 'Åkergatan 24', 'Đã nhận được hàng', NULL, 'FOLKO'),
+(10265, '24, place Kléber', 'Đã nhận được hàng', NULL, 'BLONP'),
+(10266, 'Torikatu 38', 'Đã nhận được hàng', NULL, 'WARTH'),
+(10267, 'Berliner Platz 43', 'Đang giao', NULL, 'FRANK'),
+(10268, '5ª Ave. Los Palos Grandes', 'Đã nhận được hàng', NULL, 'GROSR'),
+(10269, '1029 - 12th Ave. S.', 'Đã nhận được hàng', NULL, 'WHITC'),
+(10270, 'Torikatu 38', 'Đã nhận được hàng', NULL, 'WARTH'),
+(10271, 'P.O. Box 555', 'Đã nhận được hàng', NULL, 'SPLIR'),
+(10272, '2817 Milton Dr.', 'Đang giao', NULL, 'RATTC'),
+(10273, 'Taucherstraße 10', 'Chờ xác nhận', NULL, 'QUICK'),
+(10274, '59 rue de l\'Abbaye', 'Đã nhận được hàng', NULL, 'VINET'),
+(10275, 'Via Ludovico il Moro 22', 'Đã nhận được hàng', NULL, 'MAGAA'),
+(10276, 'Avda. Azteca 123', 'Đã nhận được hàng', NULL, 'TORTU'),
+(10277, 'Heerstr. 22', 'Đã nhận được hàng', NULL, 'MORGK'),
+(10278, 'Berguvsvägen  8', 'Chờ xác nhận', NULL, 'BERGS'),
+(10279, 'Magazinweg 7', 'Đang giao', NULL, 'LEHMS'),
+(10280, 'Berguvsvägen  8', 'Chờ xác nhận', NULL, 'BERGS'),
+(10281, 'Gran Vía, 1', 'Chờ xác nhận', NULL, 'ROMEY'),
+(10282, 'Gran Vía, 1', 'Đã nhận được hàng', NULL, 'ROMEY'),
+(10283, 'Carrera 52 con Ave. Bolívar #65-98 Llano Largo', 'Đã nhận được hàng', NULL, 'LILAS'),
+(10284, 'Magazinweg 7', 'Đã nhận được hàng', NULL, 'LEHMS'),
+(10285, 'Taucherstraße 10', 'Đã nhận được hàng', NULL, 'QUICK'),
+(10286, 'Taucherstraße 10', 'Đã nhận được hàng', NULL, 'QUICK'),
+(10287, 'Av. Copacabana, 267', 'Đang giao', NULL, 'RICAR'),
+(10288, 'Strada Provinciale 124', 'Đã nhận được hàng', NULL, 'REGGC'),
+(10289, 'Fauntleroy Circus', 'Chờ xác nhận', NULL, 'BSBEV'),
+(10290, 'Av. dos Lusíadas, 23', 'Đã nhận được hàng', NULL, 'COMMI'),
+(10291, 'Rua da Panificadora, 12', 'Đang giao', NULL, 'QUEDE'),
+(10292, 'Av. Inês de Castro, 414', 'Đã nhận được hàng', NULL, 'TRADH'),
+(10293, 'Avda. Azteca 123', 'Đã nhận được hàng', NULL, 'TORTU'),
+(10294, '2817 Milton Dr.', 'Đã nhận được hàng', NULL, 'RATTC'),
+(10295, '59 rue de l\'Abbaye', 'Đã nhận được hàng', NULL, 'VINET'),
+(10296, 'Carrera 52 con Ave. Bolívar #65-98 Llano Largo', 'Đã nhận được hàng', NULL, 'LILAS'),
+(10297, '24, place Kléber', 'Đã nhận được hàng', NULL, 'BLONP'),
+(10298, '8 Johnstown Road', 'Đã nhận được hàng', NULL, 'HUNGO'),
+(10299, 'Av. Copacabana, 267', 'Đã nhận được hàng', NULL, 'RICAR'),
+(10300, 'Via Ludovico il Moro 22', 'Đã nhận được hàng', NULL, 'MAGAA'),
+(10301, 'Adenauerallee 900', 'Đang giao', NULL, 'WANDK'),
+(10302, 'Boulevard Tirou, 255', 'Đã nhận được hàng', NULL, 'SUPRD'),
+(10303, 'C/ Romero, 33', 'Chờ xác nhận', NULL, 'GODOS'),
+(10304, 'Avda. Azteca 123', 'Chờ xác nhận', NULL, 'TORTU'),
+(10305, '2743 Bering St.', 'Đã nhận được hàng', NULL, 'OLDWO'),
+(10306, 'Gran Vía, 1', 'Đã nhận được hàng', NULL, 'ROMEY'),
+(10307, '89 Chiaroscuro Rd.', 'Đã nhận được hàng', NULL, 'LONEP'),
+(10308, 'Avda. de la Constitución 2222', 'Chờ xác nhận', NULL, 'ANATR'),
+(10309, '8 Johnstown Road', 'Đã nhận được hàng', NULL, 'HUNGO'),
+(10310, '89 Jefferson Way Suite 2', 'Chờ xác nhận', NULL, 'THEBI'),
+(10311, '67, rue des Cinquante Otages', 'Đã nhận được hàng', NULL, 'DUMON'),
+(10312, 'Adenauerallee 900', 'Chờ xác nhận', NULL, 'WANDK'),
+(10313, 'Taucherstraße 10', 'Đang giao', NULL, 'QUICK'),
+(10314, '2817 Milton Dr.', 'Đã nhận được hàng', NULL, 'RATTC'),
+(10315, 'Garden House Crowther Way', 'Đã nhận được hàng', NULL, 'ISLAT'),
+(10316, '2817 Milton Dr.', 'Đã nhận được hàng', NULL, 'RATTC'),
+(10317, '89 Chiaroscuro Rd.', 'Đang giao', NULL, 'LONEP'),
+(10318, 'Garden House Crowther Way', 'Đã nhận được hàng', NULL, 'ISLAT'),
+(10319, 'Avda. Azteca 123', 'Đã nhận được hàng', NULL, 'TORTU'),
+(10320, 'Torikatu 38', 'Đã nhận được hàng', NULL, 'WARTH'),
+(10321, 'Garden House Crowther Way', 'Đã nhận được hàng', NULL, 'ISLAT'),
+(10322, 'Calle Dr. Jorge Cash 321', 'Đã nhận được hàng', NULL, 'PERIC');
 
 -- --------------------------------------------------------
 
@@ -378,12 +379,12 @@ INSERT INTO `orders` (`order_id`, `address`, `create_date`, `user_name`) VALUES
 --
 
 CREATE TABLE `order_details` (
-  `id` bigint NOT NULL,
-  `price` bigint NOT NULL,
-  `quantity` bigint NOT NULL,
-  `order_id` bigint DEFAULT NULL,
-  `product_id` bigint DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` bigint(20) NOT NULL,
+  `price` bigint(20) NOT NULL,
+  `quantity` bigint(20) NOT NULL,
+  `order_id` bigint(20) DEFAULT NULL,
+  `product_id` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `order_details`
@@ -575,14 +576,14 @@ INSERT INTO `order_details` (`id`, `price`, `quantity`, `order_id`, `product_id`
 --
 
 CREATE TABLE `products` (
-  `product_id` bigint NOT NULL,
-  `available` bigint NOT NULL,
+  `product_id` bigint(20) NOT NULL,
+  `available` bigint(20) NOT NULL,
   `create_date` date DEFAULT NULL,
-  `image` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `price` bigint NOT NULL,
-  `category_id` bigint DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `image` varchar(500) CHARACTER SET utf8 NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `price` bigint(20) NOT NULL,
+  `category_id` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `products`
@@ -676,9 +677,9 @@ INSERT INTO `products` (`product_id`, `available`, `create_date`, `image`, `name
 --
 
 CREATE TABLE `roles` (
-  `role_id` bigint NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `role_id` bigint(20) NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `roles`
@@ -749,37 +750,37 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT cho bảng `authorities`
 --
 ALTER TABLE `authorities`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5004;
+  MODIFY `category_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5004;
 
 --
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10323;
+  MODIFY `order_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10323;
 
 --
 -- AUTO_INCREMENT cho bảng `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100194;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100194;
 
 --
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1084;
+  MODIFY `product_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1084;
 
 --
 -- AUTO_INCREMENT cho bảng `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `role_id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `role_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

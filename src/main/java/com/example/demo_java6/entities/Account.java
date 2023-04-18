@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -38,7 +39,7 @@ public class Account implements Serializable{
     @Column(length=600)
     private String photo;
     @JsonIgnore
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Authority> authorities;
     @JsonIgnore
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)

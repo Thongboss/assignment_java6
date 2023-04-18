@@ -35,5 +35,9 @@ public interface AccountService {
     List<Account> findAll();
 
     <S extends Account> S save(S entity);
+    
+    Account findByEmail(String email);
+    
+//    void updatePassword(String pass, String email);
 
 }
