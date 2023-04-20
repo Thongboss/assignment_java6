@@ -8,7 +8,7 @@
         <li class="active"><a th:href="@{/products/list}">Home</a></li>
         <th:block th:if="${#request.remoteUser}">
           <li><a th:href="@{/security/logoff}">Sign out</a></li>
-          <li><a th:href="@{/order/list}">Your orders</a></li>
+          <li><a th:href="@{/orders/list}">Your orders</a></li>
           <li th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">
             <a th:href="@{/admin/home/index}">Administration</a></li>
         </th:block>

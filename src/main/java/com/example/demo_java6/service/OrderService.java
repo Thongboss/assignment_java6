@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.data.domain.Sort;
 
+import com.example.demo_java6.entities.Account;
 import com.example.demo_java6.entities.Order;
+import com.fasterxml.jackson.databind.JsonNode;
 
 public interface OrderService {
 
@@ -25,5 +27,9 @@ public interface OrderService {
     List<Order> findAll();
 
     <S extends Order> S save(S entity);
+
+	Order create(JsonNode orderData,Account acc);
+
+	List<Order> findByUsername(String username);
 
 }

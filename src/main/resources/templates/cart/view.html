@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
 <body>
     <main>
-        <div class="panel panel-success">
+        <div class="panel panel-success" th:fragment="shopping-cart">
             <div class="panel-heading" style="font-size: 40px;">Shopping Cart</div>
             <table class="table">
                 <thead>
@@ -20,7 +20,7 @@
                         <td>{{$index + 1}}</td>
                         <td>{{item.name}}</td>
                         <td>${{item.price | number : 2}}</td>
-                        <td><input type="number" ng-change="cart.saveToLocalStorage()" ng-model="item.qty" min="1" style="width: 45px; height: 20px;"></td>
+                        <td><input type="number" ng-change="cart.check_change(item)" ng-model="item.qty" min="1" style="width: 45px; height: 20px;"></td>
                         <td>${{item.qty * item.price | number : 2}}</td>
                         <td>
                             <button ng-click="cart.remove(item.productId)" class="btn btn-sm btn-danger">
@@ -36,7 +36,7 @@
                 <button ng-click="cart.clear()" class="btn btn-danger">
                     <i class="glyphicon glyphicon-trash"></i>Clear
                 </button>
-                <a th:href="@{/order/checkout}" class="btn btn-primary" style="margin-left: 3px;">
+                <a th:href="@{/orders/checkout}" class="btn btn-primary" style="margin-left: 3px;">
                     <i class="glyphicon glyphicon-hand-right"></i>Check Out
                 </a>
 

@@ -2,7 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
 <body>
     <main>
-        <h1>ORDER LIST</h1>
+        <div class="panel panel-primary">
+            <div class="panel-heading">YOUR ORDER PURCHASED</div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Code Order</th>
+                        <th>Order Date</th>
+                        <th>Shipping Address</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="order,state : ${history}">
+                        <td th:utext="${state.index + 1}"></td>
+                        <td>[[${order.orderId}]]</td>
+                        <td>[[${order.createDate}]]</td>
+                        <td>[[${order.address}]]</td>
+                        <td>[[${order.status}]]</td>
+                        <td>
+                            <a class="btn btn-primary" th:href="@{|/orders/details/${order.orderId}|}">Detail</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="panel-footer text-right">
+                <a href="#" class="btn btn-warning">Sort Date</a>
+                <a href="#" class="btn btn-success">Sort Status</a>
+            </div>
+        </div>
     </main>
 </body>
 </html>
