@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/admin/index :: dynamic(~{::main})}">
+<body>
+    <main>
+        <div class="panel panel-primary">
+            <div class="panel-heading">PRODUCT-LIST</div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Images</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="pro in proo.products">
+                        <td>{{$index + 1}}</td>
+                        <td><img th:src="@{/images/{{pro.image}}}" alt="" style="height: 40px; width: 30px;"></td>
+                        <td>{{pro.name}}</td>
+                        <td>{{pro.price}}</td>
+                        <td>{{pro.available}}</td>
+                        <td>
+                            <a class="btn btn-info" th:href="@{/products/detail/{{pro.productId}}}">Detail</a>
+                            <a class="btn btn-primary" th:href="@{/admin/products/edit/{{pro.productId}}}">Update</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="panel-footer text-right">
+                <a th:href="@{/admin/products/new}" class="btn btn-success">Create New</a>
+                <a href="#" class="btn btn-warning">Sort Name</a>
+                <a href="#" class="btn btn-primary">Sort Quantity</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

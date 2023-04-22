@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(main)">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java6-Project</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
+<body class="container" ng-app="product-app" ng-controller="product-ctrl">
+    <header class="row">
+        <img src="/images/banner01.jpg" alt="@###" style="height: 250 px; width: 100%;">
+    </header>
+    <div class="row">
+        <nav class="navbar navbar-inverse" style="font-variant: small-caps;">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li><a th:href="@{/}">Home</a></li>
+                    <li><a th:href="@{/admin/products}">Products</a></li>
+                    <li><a th:href="@{/admin/category}">Category</a></li>
+                    <li><a th:href="@{/admin/account}">Accounts</a></li>
+                    <li><a th:href="@{/admin/authorize}">Authorizing</a></li>
+                    <li><a th:href="@{/security/logoff}">Sign out</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="row">
+        <div th:replace="${main}"></div>
+    </div>
+    <footer class="row">
+        <div style="height: 50px; width: 100%; color: greenyellow; text-align: center;
+         background-color: darkgrey; font-size: 15px; padding-top: 17px;">
+            Thời trang - Trang sức - Glosbe jewelry | Glosbe@jewelry.com.vn
+        </div>
+    </footer>
+    <!-- <script src="/js/admin-app.js"></script> -->
+    <script src="/js/product-app.js"></script>
+    <!-- <script src="/js/authority-ctrl.js"></script> -->
+</body>
+
+</html>

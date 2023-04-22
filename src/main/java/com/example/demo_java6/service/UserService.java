@@ -28,8 +28,11 @@ public class UserService implements UserDetailsService{
 		try {
 			Account acc = accountService.findByEmail(email);
 //			System.out.println("pass: "+pe.encode(acc.getPassword()));
+//			getAuthorities().stream()
+//			.map(au -> au.getRole().getName())
+//			.collect(Collectors.toList()).toArray(new String[0]);
 			String[] roles = acc.getAuthorities().stream()
-					.map(au -> au.getRole().getName())
+					.map(rl -> rl.getRole().getName())
 					.collect(Collectors.toList()).toArray(new String[0]);
 			return User.withUsername(email)
 					.password(acc.getPassword())

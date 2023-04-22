@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/admin/index :: dynamic(~{::main})}">
+<body>
+    <main>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                PRODUCT-EDITION
+            </div>
+            <div class="panel-body">
+                <form th:object="${form}" th:action="@{/admin/products/add}" method="post">
+                    <div class="row">
+                        <div class="col-sm-4 text-center">
+                            <label for="image">
+                                <img th:src="@{'/images/'+${form.image}}" style="width: 100%; height: 100%;">
+                            </label>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <div>Name: </div>
+                                    <input class="form-control" th:value="*{name}" name="name">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <div>Price: </div>
+                                    <input class="form-control" th:value="*{price}" name="price">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <div>Images: </div>
+                                    <input class="form-control" type="file" id="image" name="image"
+                                    onchange="chooseFile(this)">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <div>Category: </div>
+                                    <select name="category" class="form-control">
+                                        <option th:each="cate : ${cates}" th:value="${cate.categoryId}">[[${cate.name}]]</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <div>Create Date: </div>
+                                    <input class="form-control" th:value="*{createDate}" type="date" name="createDate">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <div>Quantity: </div>
+                                    <input class="form-control" th:value="*{available}" name="available">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row text-right" style="margin-right: 50px;">
+                        <button class="btn btn-success">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
