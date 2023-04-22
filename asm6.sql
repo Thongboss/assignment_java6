@@ -2,8 +2,8 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1:3307
--- Thời gian đã tạo: Th4 17, 2023 lúc 03:55 PM
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th4 22, 2023 lúc 08:48 PM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 7.4.29
 
@@ -56,8 +56,8 @@ INSERT INTO `accounts` (`user_name`, `email`, `full_name`, `password`, `photo`) 
 ('CHOPS', 'chops@gmail.com', 'Yang Wang', 'chops', 'user.png'),
 ('COMMI', 'commi@gmail.com', 'Pedro Afonso', 'commi', 'user.png'),
 ('CONSH', 'consh@gmail.com', 'Elizabeth Brown', 'consh', 'user.png'),
-('customer', 'teonv@gmail.com', 'Nguyễn Văn Tèo', '123', 'user.png'),
-('director', 'pheonc@fpt.edu.vn', 'Nguyễn Chí Phèo', '123', '-1407968806.jpg'),
+('customer', 'teonv@gmail.com', 'Nguyễn Văn Tèo', '$2a$10$hdskKM6jkpWC/ZIWCwZ4XeDSuJa9Z/DzpcJP9v8vN4GLGSQtjiQtu', 'user.png'),
+('director', 'pheonc@fpt.edu.vn', 'Nguyễn Chí Phèo', '$2a$10$aMPLQzVFuwt3ms9nAlzOD.ijTpdzqA9I8YuHNO0lDqH3QGBUsYTLi', '-1407968806.jpg'),
 ('DRACD', 'dracd@gmail.com', 'Sven Ottlieb', 'dracd', 'user.png'),
 ('DUMON', 'dumon@gmail.com', 'Janine Labrune', 'dumon', 'user.png'),
 ('EASTC', 'eastc@gmail.com', 'Ann Devon', 'eastc', 'user.png'),
@@ -121,6 +121,7 @@ INSERT INTO `accounts` (`user_name`, `email`, `full_name`, `password`, `photo`) 
 ('SUPRD', 'suprd@gmail.com', 'Pascale Cartrain', 'suprd', 'user.png'),
 ('THEBI', 'thebi@gmail.com', 'Liz Nixon', 'thebi', 'user.png'),
 ('THECR', 'thecr@gmail.com', 'Liu Wong', 'thecr', 'user.png'),
+('Thongga', 'thongga251099@gmail.com', 'Võ Hữu Thông', '$2a$10$0FzDGbYrWUaKlM6d0q1/n.dgK.kRCnBeK3HVQ4ZCzu7neDvWTGm1W', 'user.png'),
 ('TOMSP', 'tomsp@gmail.com', 'Karin Josephs', 'tomsp', 'user.png'),
 ('TORTU', 'tortu@gmail.com', 'Miguel Angel Paolino', 'tortu', 'user.png'),
 ('TRADH', 'tradh@gmail.com', 'Anabela Domingues', 'tradh', 'user.png'),
@@ -247,7 +248,8 @@ INSERT INTO `authorities` (`id`, `user_name`, `role_id`) VALUES
 (93, 'director', 2),
 (94, 'staff', 3),
 (95, 'director', 3),
-(96, 'staff', 1);
+(96, 'staff', 1),
+(97, 'Thongga', 3);
 
 -- --------------------------------------------------------
 
@@ -750,7 +752,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT cho bảng `authorities`
 --
 ALTER TABLE `authorities`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT cho bảng `categories`
