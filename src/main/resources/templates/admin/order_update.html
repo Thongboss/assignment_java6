@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/admin/index :: dynamic(~{::main})}">
+<body>
+    <main class="row">
+        <div class="col mt-4 ">
+            <table border="1" style="width:100%" class="table table-hover">
+                <tr class="thead-dark">
+                <th>Order Code</th>
+                <th>Email</th>
+                <th>Create Date</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>Action</th>
+                </tr>
+                <form th:action="@{'/admin/start/' + ${item.orderId}}" method="post" th:each=" item : ${listOrderStart}">
+                    <input type="hidden" name="id" value="${item.orderId}">
+                    <tr>
+                    <td th:text="${item.orderId}"></td>
+                    <td th:text="${item.account.email}"></td>
+                    <td th:text="${item.createDate}"></td>
+                    <td th:text="${item.address}"></td>
+                    <td>
+                      <select name="status" onchange="this.form.submit()">
+                        <!-- <option value=""></option> -->
+                        <option th:each="ite : ${liststatusstart}" th:value="${ite}">[(${ite})]</option>
+                        <!-- <option th:text="${ite}" th:value="${ite}"></option>  th:text="${ite}" th:value="${ite}"
+                        <option th:text="${ite}" th:value="${ite}"></option> -->
+                      </select>
+                    </td>
+                    <td>
+                        <a th:href="@{|/orders/details/${item.orderId}|}" class="btn btn-primary">Detail</a>
+                    </td>
+                    <!-- <input name="status" th:value="${item.staus}"
+                    onblur="this.form.submit()" style="width:50px;"> -->
+                    <!-- <td>
+                    <a class="btn btn-danger" th:href="@{'/cart/remove/' + ${item.productId}}">Remove</a>
+                    </td> -->
+                    </tr>
+                </form>      
+            </table>
+            <!-- <a class="btn btn-outline-warning" th:href="@{/cart/clear}">Clear cart</a>
+            <a class="btn btn-outline-success" th:href="@{/home}">Add more</a>
+            <a class="btn btn-outline-primary" th:href="@{/order}">Check out</a> -->
+        </div>
+    </main>
+</body>
+</html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 22, 2023 lúc 08:48 PM
+-- Thời gian đã tạo: Th4 24, 2023 lúc 08:22 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 7.4.29
 
@@ -372,7 +372,11 @@ INSERT INTO `orders` (`order_id`, `address`, `status`, `create_date`, `user_name
 (10319, 'Avda. Azteca 123', 'Đã nhận được hàng', NULL, 'TORTU'),
 (10320, 'Torikatu 38', 'Đã nhận được hàng', NULL, 'WARTH'),
 (10321, 'Garden House Crowther Way', 'Đã nhận được hàng', NULL, 'ISLAT'),
-(10322, 'Calle Dr. Jorge Cash 321', 'Đã nhận được hàng', NULL, 'PERIC');
+(10322, 'Calle Dr. Jorge Cash 321', 'Đã nhận được hàng', NULL, 'PERIC'),
+(10323, 'Thời trang - Trang sức - Glosbe jewelry | Glosbe@jewelry.com.vn', 'Đã nhận được hàng', '2023-04-23', 'Thongga'),
+(10324, 'Hồ Chí Kiên - Nam Định', 'Chờ xác nhận', '2023-04-23', 'Thongga'),
+(10325, 'Gia Trường - phố cổ', 'Chờ xác nhận', '2023-04-23', 'Thongga'),
+(10326, 'Momba - Xterm', 'Đang giao', '2023-04-24', 'Thongga');
 
 -- --------------------------------------------------------
 
@@ -569,7 +573,18 @@ INSERT INTO `order_details` (`id`, `price`, `quantity`, `order_id`, `product_id`
 (100190, 14, 30, 10319, 1076),
 (100191, 17, 30, 10320, 1071),
 (100192, 14, 10, 10321, 1035),
-(100193, 6, 20, 10322, 1052);
+(100193, 6, 20, 10322, 1052),
+(100194, 19, 2, 10323, 1002),
+(100195, 190, 1, 10323, 1001),
+(100196, 30, 1, 10323, 1007),
+(100197, 190, 1, 10324, 1001),
+(100198, 19, 1, 10324, 1002),
+(100199, 10, 2, 10324, 1003),
+(100200, 190, 1, 10325, 1001),
+(100201, 19, 1, 10325, 1002),
+(100202, 10, 2, 10325, 1003),
+(100203, 10, 1, 10326, 1003),
+(100204, 19, 1, 10326, 1002);
 
 -- --------------------------------------------------------
 
@@ -592,9 +607,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `available`, `create_date`, `image`, `name`, `price`, `category_id`) VALUES
-(1001, 31, NULL, '1001.jpg', 'Aniseed Syrup', 190, 1000),
-(1002, 25, NULL, '1002.jpg', 'Change Arena', 19, 1000),
-(1003, 8, NULL, '1003.jpg', 'Aniseed Syrup', 10, 1001),
+(1001, 30, NULL, '1001.jpg', 'Aniseed Syrup', 190, 1000),
+(1002, 23, NULL, '1002.jpg', 'Change Arena', 19, 1000),
+(1003, 5, NULL, '1003.jpg', 'Aniseed Syrup', 10, 1001),
 (1004, 3, NULL, '1004.jpg', 'Chef Anton\'s Cajun', 22, 1001),
 (1005, 1, NULL, '1005.jpg', 'Chef Anton\'s Gumbo', 21, 1002),
 (1006, 4, NULL, '1006.jpg', 'Grandma\'s Boysenberry', 25, 1001),
@@ -688,9 +703,9 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`role_id`, `name`) VALUES
-(1, 'Customers'),
-(2, 'Directors'),
-(3, 'Staffs');
+(1, 'CUST'),
+(2, 'DIRE'),
+(3, 'STAF');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -764,13 +779,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10323;
+  MODIFY `order_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10327;
 
 --
 -- AUTO_INCREMENT cho bảng `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100194;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100205;
 
 --
 -- AUTO_INCREMENT cho bảng `products`
