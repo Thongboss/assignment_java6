@@ -91,9 +91,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.usernameParameter("email")
 		.passwordParameter("password");
 		
+//		http.rememberMe().rememberMeParameter("rememberme");
+		
 		http.rememberMe().tokenValiditySeconds(86400);
 		
 		http.exceptionHandling().accessDeniedPage("/security/unauthoried");
+		
+//		Oauth2 Đăng nhập từ mạng xã hội
+        http.oauth2Login().loginPage("/security/login/form")
+        .defaultSuccessUrl("/security/login/successs",true)
+        .failureUrl("/security/login/error")
+        .authorizationEndpoint()
+        .baseUri("/oauth2/authorization");
 		
 		http.logout()
 		.logoutUrl("/security/logoff")

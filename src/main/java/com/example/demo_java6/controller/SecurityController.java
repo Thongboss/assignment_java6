@@ -1,13 +1,26 @@
 package com.example.demo_java6.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.demo_java6.service.UserService;
 
 
 
 @Controller
 public class SecurityController {
+	
+	@Autowired
+	private UserService userService;
+	
+	@RequestMapping("/security/login/successs")
+	public String successs(OAuth2AuthenticationToken auth) {
+		userService.loginFormOauth2(auth);
+		return "forward:/products/list";
+	}
 	
 	@RequestMapping("/security/login/form")
 	public String loginForm(Model model) {
