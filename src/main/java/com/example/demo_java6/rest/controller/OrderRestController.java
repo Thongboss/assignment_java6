@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo_java6.entities.Account;
 import com.example.demo_java6.entities.Order;
 import com.example.demo_java6.service.AccountService;
+import com.example.demo_java6.service.MailerService;
 import com.example.demo_java6.service.OrderService;
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -23,6 +24,9 @@ public class OrderRestController {
 	@Autowired
 	private AccountService accountService;
 	
+	@Autowired
+	private MailerService mailerService;
+	
 	@PostMapping()
 	public Order create(@RequestBody JsonNode orderData) {
 		String email = orderData.get("account").get("email").toString();
@@ -30,6 +34,11 @@ public class OrderRestController {
 		String mail = email.substring(1,email.length()-1);
 		
 		Account acc = accountService.findByEmail(mail);
+		
+		String subject = "Thông báo đặt hàng từ Glosbe jewelry Shop!";
+		String body = "Đơn hàng của bạn đã được yêu cầu và chờ xác nhận từ shop!";
+		
+		mailerService.queue(email, subject, body);
 
 		return orderService.create(orderData,acc);
 	}

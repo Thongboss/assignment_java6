@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 import com.example.demo_java6.entities.Account;
 import com.example.demo_java6.entities.Order;
 import com.example.demo_java6.entities.OrderDetail;
+import com.example.demo_java6.entities.Product;
 import com.example.demo_java6.repository.OrderDetailRepository;
 import com.example.demo_java6.repository.OrderRepository;
 import com.example.demo_java6.service.OrderService;
+import com.example.demo_java6.service.ProductService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,8 +22,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class OrderServiceImpl implements OrderService{
+	
 	@Autowired
     private OrderRepository orderRepository;
+	
+	@Autowired
+	private ProductService productService;
 	
 	@Autowired
 	private OrderDetailRepository orderDetailRepository;
@@ -78,7 +84,7 @@ public class OrderServiceImpl implements OrderService{
 		Order order = mapper.convertValue(orderData, Order.class);
 		order.setAccount(acc);
 		order.setStatus("Chờ xác nhận");
-		System.out.println("order: "+order.getAddress());
+//		System.out.println("order: "+acc.getEmail());
 		orderRepository.save(order);
 		
 		TypeReference<List<OrderDetail>> type = new TypeReference<List<OrderDetail>>() {};
@@ -86,12 +92,33 @@ public class OrderServiceImpl implements OrderService{
 		List<OrderDetail> details = mapper.convertValue(orderData.get("orderDetails"), type)
 				.stream().peek(d -> d.setOrder(order)).collect(Collectors.toList());
 		orderDetailRepository.saveAll(details);
+		
+		int lengDetails = details.size();
+		for(int i=0;i<lengDetails;i++) {
+			
+			Product pro = productService.getById(details.get(i).getProduct().getProductId());
+			
+//			System.out.println("sl1: "+pro.getAvailable());
+//			System.out.println("sl2: "+details.get(i).getQuantity());
+			
+			Long sl = (pro.getAvailable() - details.get(i).getQuantity());
+			pro.setAvailable(sl);
+			
+			productService.save(pro);
+		}
+		
 		return order;
 	}
 
 	@Override
 	public List<Order> findByUsername(String username) {
 		return orderRepository.findByUsername(username);
+	}
+
+	@Override
+	public List<Order> findByStatus(String status) {
+		// TODO Auto-generated method stub
+		return orderRepository.findByStatus(status);
 	}
     
     

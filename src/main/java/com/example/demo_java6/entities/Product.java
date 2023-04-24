@@ -42,7 +42,7 @@ public class Product implements Serializable{
     private String image;
     @Column(nullable = false)
     private Long price;
-    @Column(nullable = false)
+//    @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date createDate;
     private Long available;

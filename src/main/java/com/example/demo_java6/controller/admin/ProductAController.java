@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo_java6.entities.Category;
 import com.example.demo_java6.entities.Product;
+import com.example.demo_java6.model.PageDto;
 import com.example.demo_java6.service.CategoryService;
 import com.example.demo_java6.service.ProductService;
 

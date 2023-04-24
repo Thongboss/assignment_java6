@@ -31,5 +31,7 @@ public interface OrderService {
 	Order create(JsonNode orderData,Account acc);
 
 	List<Order> findByUsername(String username);
+	
+	List<Order> findByStatus(String status);
 
 }
